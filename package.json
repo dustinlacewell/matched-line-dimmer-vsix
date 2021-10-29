@@ -1,0 +1,89 @@
+{
+  "name": "matched-line-dimmer",
+	"displayName": "matched-line-dimmer",
+	"description": "Visually dim lines that match regex patterns.",
+	"version": "0.0.1",
+	"publisher": "ldlework",
+	"engines": {
+		"vscode": "^1.61.0"
+	},
+	"keywords": [
+		"dim", "dimmer", "line dimmer", "log dimmer", "hide lines"
+	],
+	"categories": [
+		"Other"
+	],
+	"repository": {
+	  "type": "git",
+	  "url": "https://github.com/dustinlacewell/matched-line-dimmer-vsix.git"
+	},	
+	"activationEvents": [ "*" ],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "matched-line-dimmer.ToggleLineDimmer",
+				"title": "Toggle Matched-Line Dimmer"
+			}
+		],
+		"configuration": {
+            "properties": {
+                "matched-line-dimmer.enabled": {
+                    "default": false,
+                    "type": "boolean",
+                    "description": "When set to true, the extension will dim matched lines."
+                },
+				"matched-line-dimmer.patterns": {
+					"default": [],
+					"type": "array",
+					"description": "A list of global dimming patterns."
+				},
+				"matched-line-dimmer.rules": {
+					"default": [],
+					"type": "array",
+					"description": "List of dimming rules."
+				},
+                "matched-line-dimmer.toggleDimmerCommandScope": {
+                    "default": "user",
+                    "type": "string",
+                    "enum": [
+                        "user",
+                        "workspace"
+                    ],
+                    "description": "Decides whether the `ToggleDimmer` command will affect the user (global) or workspace (local) settings."
+                },
+                "matched-line-dimmer.opacity": {
+                    "default": 50,
+                    "type": "number",
+                    "description": "An integer between 0 and 100 used for the opacity percentage for the dimmed (non-selected) text."
+                },
+                "matched-line-dimmer.delay": {
+                    "default": 0,
+                    "type": "number",
+                    "description": "Delay in milliseconds for dimming the non-selected text to reduce number of API calls in the event of rapid selection changes. Defaults to 0, but set higher if it feels like it is causing problems."
+                }
+            }
+        }		
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.61.0",
+		"@types/glob": "^7.1.4",
+		"@types/mocha": "^9.0.0",
+		"@types/node": "14.x",
+		"@typescript-eslint/eslint-plugin": "^4.31.1",
+		"@typescript-eslint/parser": "^4.31.1",
+		"eslint": "^7.32.0",
+		"glob": "^7.1.7",
+		"mocha": "^9.1.1",
+		"typescript": "^4.4.3",
+		"@vscode/test-electron": "^1.6.2"
+	}
+}
