@@ -16,7 +16,12 @@ export class MatchingDimmerService {
 	readConfig() {
 		const _config = vsc.workspace.getConfiguration('matched-line-dimmer');
 		return loadConfig(_config);
-	}	
+	}
+	
+	reinitialize() {
+		this.undimAll();
+		this.initialize();
+	}
 
 	initialize() {
 		this.config = this.readConfig();

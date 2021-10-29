@@ -24,7 +24,7 @@ export class ExtensionService {
 
 	registerEvents() {
 		return [
-			vsc.workspace.onDidChangeConfiguration(() => this.dimmer.initialize()),
+			vsc.workspace.onDidChangeConfiguration(() => this.dimmer.reinitialize()),
 			vsc.window.onDidChangeTextEditorSelection((e) => this.dimmer.updateIfEnabled(e.textEditor)),
 			vsc.window.onDidChangeActiveTextEditor((textEditor) => this.dimmer.updateIfEnabled(textEditor)),
 			vsc.window.onDidChangeTextEditorOptions((e) => this.dimmer.updateIfEnabled(e.textEditor)),
